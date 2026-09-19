@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Artemy Zen – Games, Music, Sound, Tools</title>
+  <title>Artemy Zen — Interactive worlds, music & art</title>
+  <meta name="description" content="Explore the creative worlds of Artemy Zen: games, music, audio tools, sound design and interactive art installations." />
+  <script src="gallery.js" defer></script>
   <style>
     :root {
       --bg: #08070a;
@@ -1742,8 +1744,17 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="gallery.css" />
 </head>
 <body>
+  <header class="gallery-header"><a class="wordmark" href="#top">AZ<span>ARTEMY ZEN</span></a><span class="header-note">INDEPENDENT CREATIVE PRACTICE</span><a href="#contact">Let’s connect ↗</a></header>
+  <section class="universe" aria-labelledby="universe-title">
+    <div class="universe-intro"><p class="overline">ART / SOUND / PLAY</p><h1 id="universe-title">Different forms.<br />Same <em>curiosity.</em></h1><p>I build worlds you can play, hear and become part of.</p></div>
+    <div class="universe-meta"><span>BELGRADE, SERBIA</span><span>FIVE WAYS IN. ENDLESS CONNECTIONS.</span></div>
+    <div class="worlds" aria-label="Explore five creative disciplines"></div>
+    <div class="universe-bottom"><span>↔ Drag an object to rotate · Select to explore</span><button id="motion-toggle" type="button" aria-pressed="false">Pause motion Ⅱ</button><a href="#collection">Explore the archive ↓</a></div>
+  </section>
+  <nav class="discipline-nav" id="collection" aria-label="Project categories"><a href="#games">01 Games</a><a href="#personal-music">02 Music</a><a href="#tools">03 Audio tools</a><a href="#audio">04 Sound design</a><a href="#installations">05 Installations</a><button id="view-all" type="button">View all ↗</button></nav>
   <main class="page">
     <div class="crt-frame">
       <div class="top-noise">
@@ -2052,6 +2063,15 @@
         </article>
       </section>
 
+      <section class="panel section" id="installations">
+        <div class="section-head"><div><div class="kicker">05 / participation as a medium</div><h2>Interactive installations</h2></div><p class="section-desc">The audience becomes part of the work. Explorations of presence, movement and shared digital spaces, created within ATTAQ LAB.</p></div>
+        <div class="installation-grid">
+          <article class="installation-card"><video controls playsinline preload="none" poster="https://attaqlab.com/images/motion-canvas/motion-canvas-color.webp" src="https://attaqlab.com/assets/video/motion-canvas-demo.mp4" aria-label="Motion Canvas installation documentation"></video><div class="art-caption"><span>01 / GENERATIVE ART</span><h3>Motion Canvas</h3><p>The body becomes a brush. Gestures unfold into layers of colour and particles, leaving a visual trace of a movement that has already passed.</p><small>Movement · Real-time image · Participation</small></div></article>
+          <article class="installation-card"><video controls playsinline preload="none" poster="https://attaqlab.com/images/ti-si-boja/ti-si-boja-01.jpg" src="https://attaqlab.com/assets/video/ti-si-boja-demo.mp4" aria-label="TI SI BOJA installation documentation"></video><div class="art-caption"><span>02 / EPHEMERAL PAINTING</span><h3>TI SI BOJA</h3><p>You are colour. Movement becomes fluid virtual paint: a temporary composition shaped by the person standing before it, never exactly repeated.</p><small>Body · Fluid colour · Impermanence</small></div></article>
+          <article class="installation-card"><video controls playsinline preload="none" src="https://attaqlab.com/assets/video/attaqcrowdscapehometestdemo.mp4" aria-label="Crowdscape installation documentation"></video><div class="art-caption"><span>03 / COLLECTIVE PORTRAIT</span><h3>Crowdscape</h3><p>A portrait leaves the camera and enters a shared three-dimensional space. As faces accumulate, individual presence becomes an evolving portrait of a community.</p><small>Portraiture · Digital space · Collective presence</small></div></article>
+          <article class="installation-card"><video controls playsinline preload="none" poster="https://attaqlab.com/images/hidden-hunt/hidden-hunt-halloween.png" src="https://attaqlab.com/assets/video/hidden-hunt-game-demo.mp4" aria-label="Hidden Hunt work in progress"></video><div class="art-caption"><span>04 / PLAYABLE STUDY · IN DEVELOPMENT</span><h3>Hidden Hunt</h3><p>A study in attention and discovery. Hands navigate an illustrated world, turning the search for hidden objects into a physical encounter with a digital scene.</p><small>Gesture · Observation · Play</small></div></article>
+        </div><p class="installation-credit">Created within <a href="https://attaqlab.com" target="_blank" rel="noopener noreferrer">ATTAQ LAB ↗</a> · Presented here as an artistic practice.</p>
+      </section>
       <div class="about-contact">
         <section class="panel section" id="contact">
           <div class="kicker">contact</div>
@@ -2732,6 +2752,11 @@
       function loop(now) {
         const dt = Math.min(0.033, (now - lastTime) / 1000);
         lastTime = now;
+        const bounds = screen.getBoundingClientRect();
+        if (document.hidden || !screen.offsetWidth || bounds.bottom < 0 || bounds.top > window.innerHeight) {
+          requestAnimationFrame(loop);
+          return;
+        }
         update(dt);
         draw();
         requestAnimationFrame(loop);
