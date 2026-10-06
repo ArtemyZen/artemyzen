@@ -7,6 +7,7 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}body{background:#11151d;back
 .installation-card video.portrait-video{object-fit:contain;background:#000}
 .hero-main h1{font-size:clamp(36px,11.5vw,165px);white-space:nowrap}.hero-main h1>span{display:inline;margin-top:0}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+.hero-bottom p{max-width:760px;text-wrap:balance}
 /* VHS tracking texture and restrained RGB separation. */
 body{background-image:radial-gradient(ellipse at 70% 0%,#28416b22,transparent 55%),repeating-linear-gradient(0deg,transparent 0 3px,#8299c705 3px 4px)}
 .hero-main h1,.section h2{text-shadow:-2px 0 #d971a66b,2px 0 #53c5ee85}
